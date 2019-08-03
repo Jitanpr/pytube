@@ -173,7 +173,8 @@ class Stream(object):
         :returns:
             An os file system compatible filename.
         """
-        title = self.player_config_args['title']
+        title = self.player_config_args.get(
+            'player_response', {}).get('videoDetails', {}).get('title')
         filename = safe_filename(title)
         return '{filename}.{s.subtype}'.format(filename=filename, s=self)
 
